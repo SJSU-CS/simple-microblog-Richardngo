@@ -17,7 +17,7 @@ public class UserController
     }
 
     //Post create user /user/create
-    // user (lowercase-a-z, and numbers only)
+    //user (lowercase-a-z, and numbers only)
     //return "message: "welcome" if successful
     @PostMapping(value = "/user/create", consumes = "application/json", produces = "application/json")
     public Map<String, String> createUser(@RequestBody Users user)
@@ -45,6 +45,11 @@ public class UserController
         output.put("Public Key", buffer.get(0).getPublicKey());
 
         return output;
+    }
+    @PostMapping(value = "/user/debug")
+    void getData(@RequestBody Map<String,Object> test)
+    {
+        System.out.println(test);
     }
 
 }

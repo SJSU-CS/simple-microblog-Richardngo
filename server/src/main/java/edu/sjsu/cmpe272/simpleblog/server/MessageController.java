@@ -3,9 +3,7 @@ package edu.sjsu.cmpe272.simpleblog.server;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.lang.Math;
 import java.util.stream.IntStream;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class MessageController
@@ -25,11 +23,6 @@ public class MessageController
     {
         messageRepository.save(messsage);
 
-        /*
-        String username = "ben";
-        RestTemplate restTemplate = new RestTemplate();
-        Map keyJson = restTemplate.getForObject(String.format("http://localhost:8080/user/%s/public-key", username),Map.class);
-        */
         Map<String,String> output = new HashMap<>();
         output.put("message-id", Long.toString(messsage.getId()));
 

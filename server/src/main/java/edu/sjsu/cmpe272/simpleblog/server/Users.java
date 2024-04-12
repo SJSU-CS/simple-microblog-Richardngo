@@ -54,8 +54,7 @@ public class Users
 
     public void setPublicKey(String publicKey)
     {
-        String encodedKey = Base64.getEncoder().encodeToString(publicKey.getBytes());
-        this.PublicKey = encodedKey;
+        this.PublicKey = publicKey;
     }
 }
 
