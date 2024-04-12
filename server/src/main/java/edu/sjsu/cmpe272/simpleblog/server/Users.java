@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import java.util.Base64;
 
 @Entity
@@ -15,6 +16,7 @@ public class Users
     private Long id;
 
     private String userName;
+    @Lob
     private String PublicKey;
 
     protected Users() {}

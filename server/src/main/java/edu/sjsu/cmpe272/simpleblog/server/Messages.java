@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import java.util.Base64;
 
 @Entity
@@ -17,7 +18,9 @@ public class Messages
     private String Date;
     private String Author;
     private String Message;
+    @Lob
     private String Attachement;
+    @Lob
     private String Signature;
 
     protected Messages() {}

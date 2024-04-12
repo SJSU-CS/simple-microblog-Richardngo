@@ -10,11 +10,14 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.util.concurrent.Callable;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 
 @SpringBootApplication
 @Command
-public class ClientApplication implements CommandLineRunner, ExitCodeGenerator {
+public class ClientApplication implements CommandLineRunner, ExitCodeGenerator
+{
 
     @Autowired
     CommandLine.IFactory iFactory;
@@ -32,7 +35,17 @@ public class ClientApplication implements CommandLineRunner, ExitCodeGenerator {
     }
 
     @Command
-    int create(@Parameters String id) {
+    int create(@Parameters String id) throws NoSuchAlgorithmException
+    {
+        //check if userID has only lowercase and numbers
+        if(!id.matches("[a-z0-9]*"))
+        { throw new InvalidUserIDException(id); }
+
+        //create a public-private key pair
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(2048);
+        KeyPair keys = keyGen.generateKeyPair();
+
         System.out.println("I wish i knew how to create " + id);
         return 2;
     }
@@ -52,4 +65,5 @@ public class ClientApplication implements CommandLineRunner, ExitCodeGenerator {
     public int getExitCode() {
         return exitCode;
     }
+
 }
