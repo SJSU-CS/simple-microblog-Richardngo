@@ -13,6 +13,7 @@ import org.springframework.core.io.FileSystemResource;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
+import picocli.CommandLine.Option;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -79,6 +80,27 @@ public class ClientApplication implements CommandLineRunner, ExitCodeGenerator
 
         return 2;
     }
+
+    @Command
+    public int list(@Option(names = "--starting", defaultValue = "-1")int starting,
+                    @Option(names="--count", defaultValue = "10") int count,
+                    @Option(names="--save-attachment") boolean attachment)
+    {
+        //targeted endpoint
+        String urlEndPoint = "/messages/list";
+        System.out.println("Starting is: " + starting + " count is: " + count + " save attachment: " + attachment);
+
+        for (int multiQuery = 0; multiQuery < count; multiQuery += 20)
+        {
+
+        }
+        System.out.println("Starting is: " + starting + " count is: "+count + " save attachment: "+ attachment);
+       // RestTemplate restTemplate = new RestTemplate();
+        //String responsePost = restTemplate.postForObject(this.rootUrl+urlEndPoint,creator, String.class);
+
+        return 0;
+    }
+
 
     @Command
     int create(@Parameters String id) throws NoSuchAlgorithmException, IOException
